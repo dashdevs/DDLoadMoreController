@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LoadMoreController_Example' do
+  pod 'LoadMoreController', :path => '../'
+
+  target 'LoadMoreController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

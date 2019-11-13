@@ -1,0 +1,6 @@
+framework module LoadMoreController {
+  umbrella header "LoadMoreController-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,29 +1,29 @@
-# README #
+# LoadMoreController
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[![CI Status](https://img.shields.io/travis/IgorrK/LoadMoreController.svg?style=flat)](https://travis-ci.org/IgorrK/LoadMoreController)
+[![Version](https://img.shields.io/cocoapods/v/LoadMoreController.svg?style=flat)](https://cocoapods.org/pods/LoadMoreController)
+[![License](https://img.shields.io/cocoapods/l/LoadMoreController.svg?style=flat)](https://cocoapods.org/pods/LoadMoreController)
+[![Platform](https://img.shields.io/cocoapods/p/LoadMoreController.svg?style=flat)](https://cocoapods.org/pods/LoadMoreController)
 
-### What is this repository for? ###
+## Example
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-### How do I get set up? ###
+## Requirements
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Installation
 
-### Contribution guidelines ###
+LoadMoreController is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
-* Writing tests
-* Code review
-* Other guidelines
+```ruby
+pod 'LoadMoreController'
+```
 
-### Who do I talk to? ###
+## Author
 
-* Repo owner or admin
-* Other community or team contact
+dashdevs LLC, hello@dashdevs.com
+
+## License
+
+LoadMoreController is available under the MIT license. See the LICENSE file for more info.

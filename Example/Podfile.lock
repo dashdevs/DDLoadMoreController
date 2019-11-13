@@ -1,0 +1,16 @@
+PODS:
+  - LoadMoreController (0.1.0)
+
+DEPENDENCIES:
+  - LoadMoreController (from `../`)
+
+EXTERNAL SOURCES:
+  LoadMoreController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LoadMoreController: ab1abe68bb2be2df33b159b9f7b9e4bf9d2acf24
+
+PODFILE CHECKSUM: ce279b0e265e83d96a0dbfb900cf781d82ab160a
+
+COCOAPODS: 1.8.4

@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		49F77C2757FD9E5D89C72C85 /* Pods_LoadMoreController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF41B0FE4C1B494D9909153 /* Pods_LoadMoreController_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		84E27977237C5095007EEDF7 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27976237C5095007EEDF7 /* DataSource.swift */; };
+		84E27979237C50A9007EEDF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27978237C50A9007EEDF7 /* ViewController.swift */; };
 		B8DD2CDAD64957FF4AD9319E /* Pods_LoadMoreController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEABBCD4AB88D8C8FDEDB80 /* Pods_LoadMoreController_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,26 +29,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04891ACF8151E3242A6F5CB1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		04891ACF8151E3242A6F5CB1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		34BA3AF2B29E143B8BF49538 /* Pods-LoadMoreController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreController_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LoadMoreController_Tests/Pods-LoadMoreController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D6DE86D3CF345EB2D728C82 /* Pods-LoadMoreController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreController_Example.release.xcconfig"; path = "Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		558514447F1562AA2C646436 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		558514447F1562AA2C646436 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LoadMoreController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoadMoreController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* LoadMoreController_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoadMoreController_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		84E27976237C5095007EEDF7 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		84E27978237C50A9007EEDF7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8AF41B0FE4C1B494D9909153 /* Pods_LoadMoreController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadMoreController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FEABBCD4AB88D8C8FDEDB80 /* Pods_LoadMoreController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadMoreController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		90ACE318EE248C8E6C89C131 /* LoadMoreController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LoadMoreController.podspec; path = ../LoadMoreController.podspec; sourceTree = "<group>"; };
+		90ACE318EE248C8E6C89C131 /* LoadMoreController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LoadMoreController.podspec; path = ../LoadMoreController.podspec; sourceTree = "<group>"; };
 		9FF10C73E0E8B7B2AFDE2421 /* Pods-LoadMoreController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreController_Example.debug.xcconfig"; path = "Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CC1F516ACE3EF8942DDEFCCE /* Pods-LoadMoreController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreController_Tests.release.xcconfig"; path = "Target Support Files/Pods-LoadMoreController_Tests/Pods-LoadMoreController_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D144DF6BB76AD9B47F7AB475 /* TODO.md */ = {isa = PBXFileReference; includeInIndex = 1; name = TODO.md; path = ../TODO.md; sourceTree = "<group>"; };
+		D144DF6BB76AD9B47F7AB475 /* TODO.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = TODO.md; path = ../TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,6 @@
 				34BA3AF2B29E143B8BF49538 /* Pods-LoadMoreController_Tests.debug.xcconfig */,
 				CC1F516ACE3EF8942DDEFCCE /* Pods-LoadMoreController_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -106,8 +107,9 @@
 		607FACD21AFB9204008FA782 /* Example for LoadMoreController */ = {
 			isa = PBXGroup;
 			children = (
+				84E27978237C50A9007EEDF7 /* ViewController.swift */,
+				84E27976237C5095007EEDF7 /* DataSource.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -173,7 +175,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				43C54ABD863AE059D24ECF38 /* [CP] Embed Pods Frameworks */,
+				F6578BE07697B70323BD5708 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,6 +231,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -264,24 +267,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		43C54ABD863AE059D24ECF38 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/LoadMoreController/LoadMoreController.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoadMoreController.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5600EB483450FFB812B44B02 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,6 +311,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F6578BE07697B70323BD5708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LoadMoreController/LoadMoreController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoadMoreController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoadMoreController_Example/Pods-LoadMoreController_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -333,7 +336,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				84E27979237C50A9007EEDF7 /* ViewController.swift in Sources */,
+				84E27977237C5095007EEDF7 /* DataSource.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,23 +13,23 @@ final class ViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var overlaylabel: UILabel!
+    @IBOutlet private weak var overlayView: UIView!
+    @IBOutlet private weak var activityIndicatorSwitch: UISwitch!
     
     // MARK: - Properties
     
     private let dataSource = DataSource()
     private var infiniteScrollingController: LoadMoreController?
     
-    
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infiniteScrollingController = LoadMoreController(scrollView: tableView,
-                                                      indicatorHeight: Dimensions.loadingIndicatorHeight,
-                                                      loadMoreCallback: { [weak self] in self?.requestNextPage() })
+                                                         triggeringThreshold: Dimensions.loadingIndicatorHeight,
+                                                         loadMoreCallback: { [weak self] in self?.requestNextPage() })
         var contentInset = tableView.contentInset
-        contentInset.bottom += overlaylabel.bounds.height
+        contentInset.bottom += overlayView.bounds.height
         tableView.contentInset = contentInset
     }
     
@@ -39,6 +39,12 @@ final class ViewController: UIViewController {
             self?.infiniteScrollingController?.stop()
             self?.tableView.reloadData()
         })
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction private func valueChanged(_ sender: UISwitch) {
+        infiniteScrollingController?.showsIndicatorOnLoadMore = sender.isOn
     }
 }
 

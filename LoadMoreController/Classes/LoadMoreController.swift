@@ -26,9 +26,21 @@ public typealias Completion = () -> Void
     }
     
     @objc public var shouldLoadMore: Bool = true
+    @objc public var showsIndicatorOnLoadMore: Bool = true {
+        didSet {
+            if showsIndicatorOnLoadMore {
+                if activityIndicatorView.superview != scrollView {
+                    scrollView?.addSubview(activityIndicatorView)
+                }
+            } else {
+                activityIndicatorView.removeFromSuperview()
+            }
+        }
+    }
+    
     
     private weak var scrollView: UIScrollView?
-    private let indicatorHeight: CGFloat
+    private let triggeringThreshold: CGFloat
     
     private lazy var activityIndicatorView: UIActivityIndicatorView = { [unowned self] in
         let size = Dimensions.activityIndicatorSize
@@ -60,14 +72,13 @@ public typealias Completion = () -> Void
     
     private var isAdjustedContentInset = false
     
-    
     // MARK: - Lifecycle
     
     @objc public init(scrollView: UIScrollView,
-                      indicatorHeight: CGFloat,
+                      triggeringThreshold: CGFloat,
                       loadMoreCallback: @escaping Completion) {
         self.scrollView = scrollView
-        self.indicatorHeight = indicatorHeight
+        self.triggeringThreshold = triggeringThreshold
         self.onLoadMore = loadMoreCallback
         super.init()
         scrollView.addSubview(activityIndicatorView)
@@ -114,7 +125,7 @@ public typealias Completion = () -> Void
         }
         
         
-        let didScrollToIndicator = offsetY > contentDelta && offsetDelta >= indicatorHeight
+        let didScrollToIndicator = offsetY > contentDelta && offsetDelta >= triggeringThreshold
         if !activityIndicatorView.isAnimating && didScrollToIndicator {
             activityIndicatorView.startAnimating()
             onLoadMore?()
@@ -136,8 +147,8 @@ public typealias Completion = () -> Void
         
         guard let scrollView = scrollView else { return }
         isAdjustedContentInset = !indicatorHidden
-        /// Add or subtract `indicatorHeight` from current `contentInset` depending on `indicatorHidden` flag.
-        let bottomContentAdjustment = indicatorHidden ? -indicatorHeight : indicatorHeight
+        /// Add or subtract `triggeringThreshold` from current `contentInset` depending on `indicatorHidden` flag.
+        let bottomContentAdjustment = indicatorHidden ? -triggeringThreshold : triggeringThreshold
         var contentInset = scrollView.contentInset
         contentInset.bottom += bottomContentAdjustment
         scrollView.contentInset = contentInset

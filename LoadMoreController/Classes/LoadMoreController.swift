@@ -8,6 +8,7 @@
 import UIKit
 
 public typealias Completion = () -> Void
+public typealias BoolResultCompletion = () -> Bool
 
 /// Utitlity class for handling scroll to bottom and showing loading indicator at the bottom of `UITableView`/`UICollectionView` content while loading the next page.
 @objc public final class LoadMoreController: NSObject {
@@ -15,7 +16,8 @@ public typealias Completion = () -> Void
     // MARK: - Properties
     
     @objc public var onLoadMore: Completion?
-    
+    @objc public var onShouldLoadMore: BoolResultCompletion?
+
     @objc public var activityIndicatorColor: UIColor? {
         set {
             activityIndicatorView.color = newValue
@@ -25,7 +27,6 @@ public typealias Completion = () -> Void
         }
     }
     
-    @objc public var shouldLoadMore: Bool = true
     @objc public var showsIndicatorOnLoadMore: Bool = true {
         didSet {
             if showsIndicatorOnLoadMore {
@@ -41,6 +42,9 @@ public typealias Completion = () -> Void
     
     private weak var scrollView: UIScrollView?
     private let triggeringThreshold: CGFloat
+    private var shouldLoadMore: Bool {
+        return onShouldLoadMore?() ?? false
+    }
     
     private lazy var activityIndicatorView: UIActivityIndicatorView = { [unowned self] in
         let size = Dimensions.activityIndicatorSize
@@ -76,10 +80,12 @@ public typealias Completion = () -> Void
     
     @objc public init(scrollView: UIScrollView,
                       triggeringThreshold: CGFloat,
-                      loadMoreCallback: @escaping Completion) {
+                      loadMoreCallback: @escaping Completion,
+                      shouldLoadMoreCallback: @escaping BoolResultCompletion) {
         self.scrollView = scrollView
         self.triggeringThreshold = triggeringThreshold
         self.onLoadMore = loadMoreCallback
+        self.onShouldLoadMore = shouldLoadMoreCallback
         super.init()
         scrollView.addSubview(activityIndicatorView)
         activityIndicatorView.isHidden = isHidden

@@ -20,14 +20,14 @@ final class ViewController: UIViewController {
     
     private let dataSource = DataSource()
     private var infiniteScrollingController: LoadMoreController?
-    
+    private var shouldLoadMore = true
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infiniteScrollingController = LoadMoreController(scrollView: tableView,
                                                          triggeringThreshold: Dimensions.loadingIndicatorHeight,
-                                                         loadMoreCallback: { [weak self] in self?.requestNextPage() })
+                                                         loadMoreCallback: { [weak self] in self?.requestNextPage() }, shouldLoadMoreCallback: { [weak self] in return self?.shouldLoadMore ?? false })
         var contentInset = tableView.contentInset
         contentInset.bottom += overlayView.bounds.height
         tableView.contentInset = contentInset
@@ -35,7 +35,7 @@ final class ViewController: UIViewController {
     
     private func requestNextPage() {
         dataSource.loadNextPage(completion: { [weak self] isLastPage in
-            self?.infiniteScrollingController?.shouldLoadMore = !isLastPage
+            self?.shouldLoadMore = !isLastPage
             self?.infiniteScrollingController?.stop()
             self?.tableView.reloadData()
         })

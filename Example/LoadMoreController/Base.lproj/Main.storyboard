@@ -36,18 +36,18 @@
                                 </connections>
                             </tableView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q7-Bc-icB">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aNp-dl-1GT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="oEv-Bp-VcL"/>
+                                    <constraint firstAttribute="height" constant="120" id="oEv-Bp-VcL"/>
                                 </constraints>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="578-PG-sHc">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity indicator:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqH-1N-p4A">
                                         <rect key="frame" x="16" y="19.5" width="132.5" height="21"/>
@@ -61,12 +61,28 @@
                                             <action selector="valueChanged:" destination="5fK-Gy-tpV" eventType="valueChanged" id="Jbp-GL-EKZ"/>
                                         </connections>
                                     </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom indicator:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quj-Hv-w3l">
+                                        <rect key="frame" x="16" y="79.5" width="136" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4Ae-To-Hro">
+                                        <rect key="frame" x="310" y="74.5" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="customIndicatorValueChanged:" destination="5fK-Gy-tpV" eventType="valueChanged" id="4s5-9a-ZVU"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="KqH-1N-p4A" firstAttribute="leading" secondItem="578-PG-sHc" secondAttribute="leading" constant="16" id="1dk-CW-r4r"/>
-                                    <constraint firstItem="ZMs-2u-CUL" firstAttribute="centerY" secondItem="578-PG-sHc" secondAttribute="centerY" id="KcV-8m-3Zv"/>
-                                    <constraint firstItem="KqH-1N-p4A" firstAttribute="centerY" secondItem="578-PG-sHc" secondAttribute="centerY" id="g8I-mI-Hdf"/>
+                                    <constraint firstItem="quj-Hv-w3l" firstAttribute="centerY" secondItem="578-PG-sHc" secondAttribute="centerY" multiplier="1.5" id="6Fo-5n-8jY"/>
+                                    <constraint firstItem="KqH-1N-p4A" firstAttribute="centerY" secondItem="578-PG-sHc" secondAttribute="centerY" multiplier="1/2" id="g8I-mI-Hdf"/>
+                                    <constraint firstItem="4Ae-To-Hro" firstAttribute="trailing" secondItem="ZMs-2u-CUL" secondAttribute="trailing" id="kyz-t4-hql"/>
+                                    <constraint firstItem="4Ae-To-Hro" firstAttribute="centerY" secondItem="quj-Hv-w3l" secondAttribute="centerY" id="o0b-sw-IdQ"/>
+                                    <constraint firstItem="ZMs-2u-CUL" firstAttribute="centerY" secondItem="KqH-1N-p4A" secondAttribute="centerY" id="r65-Uz-QbN"/>
+                                    <constraint firstItem="quj-Hv-w3l" firstAttribute="leading" secondItem="KqH-1N-p4A" secondAttribute="leading" id="ra1-OP-2Od"/>
                                     <constraint firstAttribute="trailing" secondItem="ZMs-2u-CUL" secondAttribute="trailing" constant="16" id="tFY-CR-2LA"/>
                                 </constraints>
                             </view>
@@ -89,6 +105,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicatorSwitch" destination="ZMs-2u-CUL" id="vZ1-Eg-7Jn"/>
+                        <outlet property="customIndicatorSwitch" destination="4Ae-To-Hro" id="i42-Cz-DzG"/>
                         <outlet property="overlayView" destination="578-PG-sHc" id="GxR-Qq-gaG"/>
                         <outlet property="tableView" destination="CL6-Xy-kEA" id="NEs-8B-mCL"/>
                     </connections>

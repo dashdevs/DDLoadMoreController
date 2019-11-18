@@ -20,25 +20,18 @@ public typealias BoolResultCompletion = () -> Bool
 
     @objc public var activityIndicatorColor: UIColor? {
         set {
-            activityIndicatorView.color = newValue
+            defaultActivityIndicatorView.color = newValue
         }
         get {
-            return activityIndicatorView.color
+            return defaultActivityIndicatorView.color
         }
     }
     
     @objc public var showsIndicatorOnLoadMore: Bool = true {
         didSet {
-            if showsIndicatorOnLoadMore {
-                if activityIndicatorView.superview != scrollView {
-                    scrollView?.addSubview(activityIndicatorView)
-                }
-            } else {
-                activityIndicatorView.removeFromSuperview()
-            }
+            rearrangeActivityIndicator()
         }
     }
-    
     
     private weak var scrollView: UIScrollView?
     private let triggeringThreshold: CGFloat
@@ -46,7 +39,7 @@ public typealias BoolResultCompletion = () -> Bool
         return onShouldLoadMore?() ?? false
     }
     
-    private lazy var activityIndicatorView: UIActivityIndicatorView = { [unowned self] in
+    private lazy var defaultActivityIndicatorView: UIActivityIndicatorView = { [unowned self] in
         let size = Dimensions.activityIndicatorSize
         let origin: CGPoint = {
             guard let scrollView = self.scrollView else { return .zero }
@@ -56,10 +49,24 @@ public typealias BoolResultCompletion = () -> Bool
         let frame = CGRect(origin: origin, size: size)
         let activityIndicatorView = UIActivityIndicatorView(frame: frame)
         activityIndicatorView.color = .black
-        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
         activityIndicatorView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         return activityIndicatorView
         }()
+    
+    
+    @objc public var customActivityIndicatorView: UIView? {
+        willSet {
+            (activityIndicatorView as? Animatable)?.stopAnimating()
+            activityIndicatorView.removeFromSuperview()
+        }
+        didSet {
+            updateActivityIndicator()
+        }
+    }
+    private var activityIndicatorView: UIView {
+        return customActivityIndicatorView ?? defaultActivityIndicatorView
+    }
     
     /// KVO observation for `scrollView.contentOffset` to avoid interference with `UIScrollViewDelegateMethods`
     private var observation: NSKeyValueObservation?
@@ -88,7 +95,7 @@ public typealias BoolResultCompletion = () -> Bool
         self.onShouldLoadMore = shouldLoadMoreCallback
         super.init()
         scrollView.addSubview(activityIndicatorView)
-        activityIndicatorView.isHidden = isHidden
+        activityIndicatorView.isHidden = true
         observation = scrollView.observe(\.contentOffset, changeHandler: { [weak self] _, _ in self?.didScroll() })
     }
     
@@ -101,7 +108,8 @@ public typealias BoolResultCompletion = () -> Bool
         let needsAnimation = offsetDelta >= 0
         guard needsAnimation else {
             adjustContentInsetIfNeeded(indicatorHidden: true)
-            activityIndicatorView.stopAnimating()
+            (activityIndicatorView as? Animatable)?.stopAnimating()
+            activityIndicatorView.isHidden = true
             return
         }
         UIView.animate(withDuration: Constants.animationDuration,
@@ -109,17 +117,21 @@ public typealias BoolResultCompletion = () -> Bool
                         self?.adjustContentInsetIfNeeded(indicatorHidden: true)
             },
                        completion: { [weak self] finished in
-                        if finished { self?.activityIndicatorView.stopAnimating() }
+                        if finished {
+                            (self?.activityIndicatorView as? Animatable)?.stopAnimating()
+                            self?.activityIndicatorView.isHidden = true
+                        }
         })
     }
     
     // MARK: - Private methods
-    
+        
     private func didScroll() {
         guard let scrollView = scrollView else { return }
         let offsetY = scrollView.contentOffset.y
-        activityIndicatorView.isHidden = isHidden
-        guard !activityIndicatorView.isHidden && offsetY >= 0 else { return }
+                guard !isHidden && offsetY >= 0 else {
+            return
+        }
         let contentDelta = scrollView.contentSize.height - scrollView.frame.size.height
         let offsetDelta = offsetY - contentDelta
         
@@ -130,14 +142,15 @@ public typealias BoolResultCompletion = () -> Bool
             activityIndicatorView.frame.origin.y = defaultY
         }
         
-        
         let didScrollToIndicator = offsetY > contentDelta && offsetDelta >= triggeringThreshold
-        if !activityIndicatorView.isAnimating && didScrollToIndicator {
-            activityIndicatorView.startAnimating()
+        if activityIndicatorView.isHidden != isHidden && didScrollToIndicator {
+            activityIndicatorView.isHidden = isHidden
+            isHidden
+                ? (activityIndicatorView as? Animatable)?.stopAnimating()
+                : (activityIndicatorView as? Animatable)?.startAnimating()
             onLoadMore?()
         }
-        
-        if scrollView.isDecelerating && activityIndicatorView.isAnimating && !isAdjustedContentInset {
+        if scrollView.isDecelerating && !activityIndicatorView.isHidden && !isAdjustedContentInset {
             UIView.animate(withDuration: Constants.animationDuration, animations: { [weak self] in
                 self?.adjustContentInsetIfNeeded(indicatorHidden: self?.isHidden ?? false)
             })
@@ -159,6 +172,24 @@ public typealias BoolResultCompletion = () -> Bool
         contentInset.bottom += bottomContentAdjustment
         scrollView.contentInset = contentInset
     }
+    
+    private func updateActivityIndicator() {
+        if let customView = customActivityIndicatorView, customView.superview != scrollView {
+            customView.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: triggeringThreshold / 2.0)
+        }
+        activityIndicatorView.isHidden = true
+        rearrangeActivityIndicator()
+    }
+    
+    private func rearrangeActivityIndicator() {
+        guard showsIndicatorOnLoadMore else {
+            activityIndicatorView.removeFromSuperview()
+            return
+        }
+        if activityIndicatorView.superview != scrollView {
+            scrollView?.addSubview(activityIndicatorView)
+        }
+    }
 }
 
 // MARK: - Constants, Dimensions
@@ -174,3 +205,15 @@ private extension LoadMoreController {
         }
     }
 }
+
+// MARK: - Animatable
+
+public protocol Animatable: class {
+    func startAnimating()
+    func stopAnimating()
+    var isAnimating: Bool { get }
+}
+
+extension UIActivityIndicatorView: Animatable {}
+
+extension UIImageView: Animatable {}

@@ -15,12 +15,22 @@ final class ViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var activityIndicatorSwitch: UISwitch!
+    @IBOutlet weak var customIndicatorSwitch: UISwitch!
     
     // MARK: - Properties
     
     private let dataSource = DataSource()
     private var infiniteScrollingController: LoadMoreController?
     private var shouldLoadMore = true
+    
+    private lazy var customActivityIndicator: UIView = {
+        let images = Array(0...4).compactMap( { "upyachka_\($0)"} ).compactMap({ UIImage(named: $0) }).compactMap({ $0 })
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 50.0, height: 50.0)))
+        imageView.animationImages = images
+        imageView.animationDuration = 0.35
+        return imageView
+    } ()
+    
     // MARK: - UIViewController
     
     override func viewDidLoad() {
@@ -40,11 +50,15 @@ final class ViewController: UIViewController {
             self?.tableView.reloadData()
         })
     }
-    
+        
     // MARK: - Actions
     
     @IBAction private func valueChanged(_ sender: UISwitch) {
         infiniteScrollingController?.showsIndicatorOnLoadMore = sender.isOn
+    }
+    
+    @IBAction private func customIndicatorValueChanged(_ sender: UISwitch) {
+        infiniteScrollingController?.customActivityIndicatorView = sender.isOn ? customActivityIndicator : nil
     }
 }
 
